@@ -16,15 +16,11 @@
  */
 #pragma once
 
-#ifdef VIA_ENABLE
-/* VIA configuration. */
-#    define DYNAMIC_KEYMAP_LAYER_COUNT 4
-#endif  // VIA_ENABLE
 
 #ifdef COMBO_ENABLE
 #    define COMBO_COUNT 8
-#    define COMBO_TERM 40
-#endif  // VIA_ENABLE
+#    define COMBO_TERM 50
+#endif
 
 /* Disable unused features. */
 #define NO_ACTION_ONESHOT
@@ -39,6 +35,7 @@
  */
 #    define TAPPING_TERM 200
 #endif  // TAPPING_TERM
+
 
 /* Charybdis-specific features. */
 
@@ -75,3 +72,11 @@
 #    define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
 #    define RGB_MATRIX_STARTUP_HSV RGB_MATRIX_STARTUP_HUE, RGB_MATRIX_STARTUP_SAT, RGB_MATRIX_STARTUP_VAL
 #endif  // RGB_MATRIX_ENABLE
+
+#ifndef NO_DEBUG
+#    define NO_DEBUG
+#endif // !NO_DEBUG
+
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#    define NO_PRINT
+#endif // !NO_PRINT
