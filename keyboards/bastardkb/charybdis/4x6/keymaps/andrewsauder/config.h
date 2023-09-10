@@ -54,22 +54,44 @@
 /* RGB Matrix. */
 
 #ifdef RGB_MATRIX_ENABLE
+#    define SPLIT_TRANSPORT_MIRROR
+#    define SPLIT_LED_STATE_ENABLE
+#    define SPLIT_LAYER_STATE_ENABLE
+#    define SPLIT_MODS_ENABLE
+
+#    define RGB_DISABLE_WHEN_USB_SUSPENDED
+
 // Limit maximum brightness to keep power consumption reasonable, and avoid
 // disconnects.
 #    undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 64
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 50
+
+// Disable control of RGB matrix by keycodes (must use firmware implementation
+// to control the feature).
+#        define RGB_MATRIX_DISABLE_KEYCODES
+
+// Startup values.
+// #    define RGB_MATRIX_DEFAULT_HUE 0
+// #    define RGB_MATRIX_DEFAULT_SAT 255
+// #    define RGB_MATRIX_DEFAULT_VAL 50
 
 // Rainbow swirl as startup mode.
-#    define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
-#    define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
+#    undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+#    define DISABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+
+#    define ENABLE_RGB_MATRIX_SOLID_COLOR
+#    undef RGB_MATRIX_DEFAULT_MODE
+#    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR
+#    define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_COLOR
+
 
 // Slow swirl at startup.
-#    define RGB_MATRIX_STARTUP_SPD 32
+//#    define RGB_MATRIX_STARTUP_SPD 32
 
 // Startup values.
 #    define RGB_MATRIX_STARTUP_HUE 0
 #    define RGB_MATRIX_STARTUP_SAT 255
-#    define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#    define RGB_MATRIX_STARTUP_VAL 50
 #    define RGB_MATRIX_STARTUP_HSV RGB_MATRIX_STARTUP_HUE, RGB_MATRIX_STARTUP_SAT, RGB_MATRIX_STARTUP_VAL
 #endif  // RGB_MATRIX_ENABLE
 
